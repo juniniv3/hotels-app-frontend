@@ -20,3 +20,7 @@ steps:
     npm install
     ng build
   displayName: 'npm install and build'
+
+- script: |
+    npm run test -- --no-watch --browsers=ChromeHeadlessCI
+  displayName: 'Run Unit Tests'
