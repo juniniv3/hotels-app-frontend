@@ -31,6 +31,6 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- publish: '$(Build.ArtifactStagingDirectory)/dist'
-  displayName: 'Publish script'
+- publish: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Publish artifact'
   artifact: drop
