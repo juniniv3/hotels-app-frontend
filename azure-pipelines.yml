@@ -24,3 +24,13 @@ steps:
 - script: |
     npm run not-watch-test
   displayName: 'Run Unit Tests'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'dist/'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- publish: '$(Build.ArtifactStagingDirectory)/dist'
+  displayName: 'Publish script'
+  artifact: drop
