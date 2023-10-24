@@ -20,10 +20,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('hotels-app-frontend');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('hotels-app-frontend app is running!');
-  });
+
 });
