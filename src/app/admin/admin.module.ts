@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HotelAdminComponent } from './components/hotel-admin/hotel-admin.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   {
-    path: 'panel',
-    component: AdminPanelComponent,
+    component: AdminComponent,
+    path: '',
+    children: [
+      { component: HotelAdminComponent, path: 'hotel' }
+    ]
   },
 ];
 
 @NgModule({
   declarations: [
     HotelAdminComponent,
-    AdminPanelComponent
+    AdminComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -22,6 +25,6 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule
-  ]
+  ],
 })
 export class AdminModule { }
