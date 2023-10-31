@@ -1,26 +1,62 @@
-<h2 class="text-3xl font-bold my-3">Crear Hotel</h2>
+<h2 class="text-3xl font-bold mb-3">Crear Hotel</h2>
+<form>
+  <div class="grid grid-cols-3 grid-rows-2 gap-6 ">
+    <div class="col-span-2 row-span-2 flex flex-col bg-white rounded relative ">
+      <div class="bg-blue-600 p-3 rounded-t ">
+        <h2 class="text-white font-bold">Información básica</h2>
+      </div>
+      <div class="flex flex-col p-6">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" class="border-gray-400 border-2 p-1 pl-2 rounded ">
+        <label for="location" class="block my-2">Escoge una ubicación</label>
+        <select id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded p-2">
+          <option selected>Escoge una ubicación</option>
+          <option *ngFor="let location of locations" value={{location.id}}>{{location.city}}, {{location.country}}
+          </option>
+        </select>
 
-<div class="grid grid-cols-3 gap-6">
-  <div class="col-span-2 flex flex-col bg-white rounded relative ">
-    <div class="bg-blue-600 p-3 rounded-t ">
-      <h2 class="text-white font-bold">Información básica</h2>
+        <label for="starts" class="my-2">Estrellas</label>
+        <select id="starts" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded p-2">
+          <option selected>Seleccionar estrellas del hotel</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="4">5</option>
+        </select>
+        <label for="description" class="mt-2">Descripción</label>
+        <textarea name="description" id="description" cols="30" rows="10"
+          class=" rounded mt-2 focus:border-blue border-2 border-solid"></textarea>
+
+      </div>
     </div>
-    <form action="" class="flex flex-col p-6">
-      <label for="name">Nombre</label>
-      <input type="text" id="name">
-      <label for="location" class="block mb-2">Escoge una ubicación</label>
-      <select id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded p-2">
-        <option selected>Escoge una ubicación</option>
-        <option *ngFor="let location of locations" value={{location.id}}>{{location.city}}, {{location.country}}</option>
-      </select>
-      <label for="starts">Estrellas</label>
-      <input type="text" id="starts">
-      <label for="description">Descripción</label>
-      <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    </form>
-  </div>
-  <div class="col-span-1 bg-white rounded">
-    <input type="file" name="" id="">
+    <div class="col-span-1 bg-white rounded">
+      <div *ngIf="!previewImgURL" class="flex flex-col h-full items-center justify-center cursor-pointer" (click)="clickLoadImage()">
+        <div class="text-6xl">📁</div>
+        <p class="text-2xl pt-2">Cargar imagen</p>
+      </div>
+      <input type="file" name="" id="file-loader" class="invisible" (change)="showPreview($event)">
+      <img id="file-preview" [src]="previewImgURL" [ngClass]="{'invisible': previewImgURL === ''}">
+    </div>
+
+    <div class="col-span-1 bg-white rounded p-4">
+      <h2 class="font-bold text-lg mb-2 justify-center">Sevicios</h2>
+      <div *ngFor="let service of services" class="flex items-center mb-2">
+        <input id="default-checkbox" type="checkbox" value=""
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">{{service.emoji}}
+          {{service.name}}</label>
+      </div>
+    </div>
 
   </div>
-</div>
+
+  <div class="flex justify-center pt-3">
+    <button type="button"
+      class="w-48 text-white bg-blue-600 hover:bg-blue-700 font-medium rounded text-sm px-4 py-2 my-4">
+      Crear Hotel
+    </button>
+
+  </div>
+</form>
